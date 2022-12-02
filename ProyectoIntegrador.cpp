@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <iomanip>
 
 using namespace std;
@@ -318,8 +319,11 @@ class registration{
 class ticket : public registration, Details{
     public:
         void Bill(){
+            string dataFile,aux;
+            cin>>dataFile;
+            aux=(dataFile+".txt");
             string destintaion="";
-            ofstream outf("register.txt");{
+            ofstream outf(aux);{
                 outf<<"___________Airlines__________"<<endl;
                 outf<<"____________Ticket___________\n"<<endl;
 
