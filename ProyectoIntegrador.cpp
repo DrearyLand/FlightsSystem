@@ -1,350 +1,320 @@
+//Los integrates son Ezzat Alzahori Campos y Stephanie Ortega
+
 #include <iostream>
-#include <fstream>
 #include <sstream>
-#include <iomanip>
+#include <fstream>
+#include "ClasesPrueba.h"
 
 using namespace std;
 
+Login l;
+flightDetails fD;
+
 void mainMenu();
+void cancel();
 
-class System {
-    public:
-        System(){
+void flightDetails::flightMenu(){
+    cout<<"_________________________________________________"<<endl;
+    cout<<"\n1) Monterrey\n2) Guadalajara \n3) New York \n4) Boston\n5) San Fransisco\n6) Toronto"<<endl;
+    cout<<"\nPress the number of the flight you want to book: ";
+    cin>>choice;
+
+    switch (choice){
+    case 1:
+        cout<<"\nMonterrey - 900km - $1,999"<<endl<<endl;
+        cout<<"How many seats do you want to buy(if you want to cancel press 0), no more than 10 seats: ";
+        cin>>numFlights;
+        if(numFlights==0 || numFlights>10){
+            cout<<"\nInvalid input, returning to main Menu...";
+            cin.ignore();
             mainMenu();
+            break;
         }
-};
-
-class Details {
-    public:
-        static string name, gender;
-        int age;
-        string add;
-        static int customerId;
-        char arr[100];
-
-        void information()
-        {
-            cout<<"\nEnter the customer ID: ";
-            cin>>customerId;
-            cout<<"\nEnter the name: ";
-            cin>>name;
-            cout<<"\nEnter the age: ";
-            cin>>age;
-            cout<<"\nComing city: ";
-            cin>>add;
-            cout<<"\nGender: ";
-            cin>>gender;
-            cout<<"\nThanks. "<<endl;
-        }
-};
-
-int Details::customerId;
-string Details::name;
-string Details::gender;
-
-class registration{
-    public:
-        static int choice;
-        int choice1;
-        int back;
-        static float charges;
-
-        void flights(){
-            string flightN[]={"Queretaro","Monterrey","Guadalajara","Toronto","Boston","San Fransisco"};
-            int length = sizeof(flightN)/sizeof(flightN[0]);
-            for(int i=0;i<length;i++){
-                cout<<(i+1)<<".Flight to "<<flightN[i]<<endl;
+        else{
+            price = numFlights*1999;
+            Km = numFlights*900;
+            if(Km>=5000){
+                price=price*.60;
             }
-
-            cout<<"\nAirlines"<<endl;
-            cout<<"Press the number of the flight you want to book: ";
-            cin>>choice;
-
-            switch(choice){
-                case 1:{
-                    cout<<"\n______________Flights to Queretaro______________\n"<<endl;
-                    cout<<"Following are the flights \n"<<endl;
-
-                    cout<<"1. Queretaro - 498";
-                    cout<<"\t16-12-2022 08:00AM 1hrs $1,699"<<endl;
-                    cout<<"2. Queretaro - 658";
-                    cout<<"\t16-12-2022 16:00AM 4hrs $1,199"<<endl;
-                    cout<<"3. Queretaro - 220";
-                    cout<<"\t16-12-2022 22:00AM 2hrs $1,399"<<endl;
-
-                    cout<<"\nSelect what flight do you want: ";
-                    cin>>choice1;
-
-                    if(choice1==1){
-                        charges=1699;
-                        cout<<"\nPurchase Compleate."<<endl;
-                        cout<<"You can get your ticket in the main menu. "<<endl;
-                    }
-                    else if(choice1==2){
-                        charges=1199;
-                        cout<<"\nPurchase Compleate."<<endl;
-                        cout<<"You can get your ticket in the main menu. "<<endl;
-                    }
-                    else if(choice1==3){
-                        charges=1399;
-                        cout<<"\nPurchase Compleate."<<endl;
-                        cout<<"You can get your ticket in the main menu. "<<endl;
-                    }
-                    else{
-                        cout<<"Invalid input, shifting to the previous menu"<<endl;
-                        flights();
-                    }
-
-                    cout<<"Press 0 key to go back to the main menu: "<<endl;
-                    cin>>back;
-
-                    if(back==0){mainMenu();}
-                    else{mainMenu();}
-
-                }
-                
-                case 2:{
-                    cout<<"\n______________Flights to Monterrey______________\n"<<endl;
-                    cout<<"Following are the flights \n"<<endl;
-
-                    cout<<"1. Monterrey - 267";
-                    cout<<"\t13-12-2022 05:00AM 2hrs $1,999"<<endl;
-                    cout<<"2. Monterrey - 401";
-                    cout<<"\t13-12-2022 13:00AM 5hrs $1,299"<<endl;
-                    cout<<"3. Monterrey - 463";
-                    cout<<"\t13-12-2022 23:00AM 3hrs $1,499"<<endl;
-
-                    cout<<"\nSelect what flight do you want: ";
-                    cin>>choice1;
-
-                    if(choice1==1){
-                        charges=1999;
-                        cout<<"\nPurchase Compleate."<<endl;
-                        cout<<"You can get your ticket in the main menu. "<<endl;
-                    }
-                    else if(choice1==2){
-                        charges=1299;
-                        cout<<"\nPurchase Compleate."<<endl;
-                        cout<<"You can get your ticket in the main menu. "<<endl;
-                    }
-                    else if(choice1==3){
-                        charges=1499;
-                        cout<<"\nPurchase Compleate."<<endl;
-                        cout<<"You can get your ticket in the main menu. "<<endl;
-                    }
-                    else{
-                        cout<<"Invalid input, shifting to the previous menu"<<endl;
-                        flights();
-                    }
-
-                    cout<<"Press 0 key to go back to the main menu: "<<endl;
-                    cin>>back;
-
-                    if(back==0){mainMenu();}
-                    else{mainMenu();}
-                }
-
-                case 3:{
-                    cout<<"\n______________Flights to Guadalajara______________\n"<<endl;
-                    cout<<"Following are the flights \n"<<endl;
-
-                    cout<<"1. Guadalajara - 653";
-                    cout<<"\t03-12-2022 05:00AM 2hrs $1,999"<<endl;
-                    cout<<"2. Guadalajara - 516";
-                    cout<<"\t07-12-2022 13:00AM 5hrs $1,299"<<endl;
-                    cout<<"3. Guadalajara - 158";
-                    cout<<"\t02-12-2022 23:00AM 3hrs $1,499"<<endl;
-
-                    cout<<"\nSelect what flight do you want: ";
-                    cin>>choice1;
-
-                    if(choice1==1){
-                        charges=1999;
-                        cout<<"\nPurchase Compleate."<<endl;
-                        cout<<"You can get your ticket in the main menu. "<<endl;
-                    }
-                    else if(choice1==2){
-                        charges=1299;
-                        cout<<"\nPurchase Compleate."<<endl;
-                        cout<<"You can get your ticket in the main menu. "<<endl;
-                    }
-                    else if(choice1==3){
-                        charges=1499;
-                        cout<<"\nPurchase Compleate."<<endl;
-                        cout<<"You can get your ticket in the main menu. "<<endl;
-                    }
-                    else{
-                        cout<<"Invalid input, shifting to the previous menu"<<endl;
-                        flights();
-                    }
-
-                    cout<<"Press 0 key to go back to the main menu: "<<endl;
-                    cin>>back;
-
-                    if(back==0){mainMenu();}
-                    else{mainMenu();}
-                }
-
-                case 4:{
-                    cout<<"\n______________Flights to Toronto______________\n"<<endl;
-                    cout<<"Following are the flights \n"<<endl;
-
-                    cout<<"1. Toronto - 238";
-                    cout<<"\t22-12-2022 11:00AM 4hrs $3,999"<<endl;
-                    cout<<"2. Toronto - 184";
-                    cout<<"\t12-12-2022 17:00AM 9hrs $2,499"<<endl;
-                    cout<<"3. Toronto - 360";
-                    cout<<"\t15-12-2022 19:00AM 6hrs $3,199"<<endl;
-
-                    cout<<"\nSelect what flight do you want: ";
-                    cin>>choice1;
-
-                    if(choice1==1){
-                        charges=3999;
-                        cout<<"\nPurchase Compleate."<<endl;
-                        cout<<"You can get your ticket in the main menu. "<<endl;
-                    }
-                    else if(choice1==2){
-                        charges=2499;
-                        cout<<"\nPurchase Compleate."<<endl;
-                        cout<<"You can get your ticket in the main menu. "<<endl;
-                    }
-                    else if(choice1==3){
-                        charges=3199;
-                        cout<<"\nPurchase Compleate."<<endl;
-                        cout<<"You can get your ticket in the main menu. "<<endl;
-                    }
-                    else{
-                        cout<<"Invalid input, shifting to the previous menu"<<endl;
-                        flights();
-                    }
-
-                    cout<<"Press 0 key to go back to the main menu: "<<endl;
-                    cin>>back;
-
-                    if(back==0){mainMenu();}
-                    else{mainMenu();}
-                }
-
-                case 5:{
-                    cout<<"\n______________Flights to Boston______________\n"<<endl;
-                    cout<<"Following are the flights \n"<<endl;
-
-                    cout<<"1. Boston - 384";
-                    cout<<"\t21-12-2022 12:00AM 4hrs $2,999"<<endl;
-                    cout<<"2. Boston - 830";
-                    cout<<"\t19-12-2022 15:00AM 8hrs $1,699"<<endl;
-                    cout<<"3. Boston - 423";
-                    cout<<"\t27-12-2022 20:00AM 6hrs $2,199"<<endl;
-
-                    cout<<"\nSelect what flight do you want: ";
-                    cin>>choice1;
-
-                    if(choice1==1){
-                        charges=2999;
-                        cout<<"\nPurchase Compleate."<<endl;
-                        cout<<"You can get your ticket in the main menu. "<<endl;
-                    }
-                    else if(choice1==2){
-                        charges=1699;
-                        cout<<"\nPurchase Compleate."<<endl;
-                        cout<<"You can get your ticket in the main menu. "<<endl;
-                    }
-                    else if(choice1==3){
-                        charges=2199;
-                        cout<<"\nPurchase Compleate."<<endl;
-                        cout<<"You can get your ticket in the main menu. "<<endl;
-                    }
-                    else{
-                        cout<<"Invalid input, shifting to the previous menu"<<endl;
-                        flights();
-                    }
-
-                    cout<<"Press 0 key to go back to the main menu: "<<endl;
-                    cin>>back;
-
-                    if(back==0){mainMenu();}
-                    else{mainMenu();}
-                }
-
-                case 6: {
-                    cout<<"\n______________Flights to San Fransisco______________\n"<<endl;
-                    cout<<"Following are the flights \n"<<endl;
-
-                    cout<<"1. San Fransisco - 258";
-                    cout<<"\t18-12-2022 07:00AM 3hrs $2,599"<<endl;
-                    cout<<"2. San Fransisco - 377";
-                    cout<<"\t16-12-2022 13:00AM 7hrs $1,599"<<endl;
-                    cout<<"3. San Fransisco - 542";
-                    cout<<"\t30-12-2022 22:00AM 5hrs $2,199"<<endl;
-
-                    cout<<"\nSelect what flight do you want: ";
-                    cin>>choice1;
-
-                    if(choice1==1){
-                        charges=2599;
-                        cout<<"\nPurchase Compleate."<<endl;
-                        cout<<"You can get your ticket in the main menu. "<<endl;
-                    }
-                    else if(choice1==2){
-                        charges=1599;
-                        cout<<"\nPurchase Compleate."<<endl;
-                        cout<<"You can get your ticket in the main menu. "<<endl;
-                    }
-                    else if(choice1==3){
-                        charges=2199;
-                        cout<<"\nPurchase Compleate."<<endl;
-                        cout<<"You can get your ticket in the main menu. "<<endl;
-                    }
-                    else{
-                        cout<<"Invalid input, shifting to the previous menu"<<endl;
-                        flights();
-                    }
-
-                    cout<<"Press 0 key to go back to the main menu: "<<endl;
-                    cin>>back;
-
-                    if(back==0){mainMenu();}
-                    else{mainMenu();}
-                }
-                default:{
-                    cout<<"Invalid Input, Shifting to the main menu. "<<endl;
-                    mainMenu();
-                    break;
-                }
-            }
+            cout<<"\nThanks for buying with us redirecting you to the main menu..."<<endl<<endl;
+            getPrice();
+            getKm();
+            mainMenu();
+            // cout<<"\nTotal price: "<<price<<endl;
+            // cout<<"Total Km: "<<Km;
         }
-};
-
-class ticket : public registration, Details{
-    public:
-        void Bill(){
-            string dataFile,aux;
-            cin>>dataFile;
-            aux=(dataFile+".txt");
-            string destintaion="";
-            ofstream outf(aux);{
-                outf<<"___________Airlines__________"<<endl;
-                outf<<"____________Ticket___________\n"<<endl;
-
-                outf<<"Customer ID: "<<Details::customerId<<endl;
-                outf<<"Customer Name: "<<Details::name<<endl;
-                outf<<"Customer Gender: "<<Details::gender<<endl;
-
-                if(registration::choice==1){destintaion="Queretaro";}
-                else if(registration::choice==2){destintaion="Monterrey";}
-                else if(registration::choice==3){destintaion="Guadalajara";}
-                else if(registration::choice==4){destintaion="Toronto";}
-                else if(registration::choice==5){destintaion="Boston";}
-                else if(registration::choice==6){destintaion="San Fransisco";}
-                
-                outf<<"\nDestination: "<<destintaion<<endl;
-                outf<<"Final Cost: "<<registration::charges<<endl;
-            }
-            outf.close();
+        break;
+    case 2:
+        cout<<"\nGuadalajara - 550km - $1,499"<<endl<<endl;
+        cout<<"How many seats do you want to buy(if you want to cancel press 0), no more than 10 seats: ";
+        cin>>numFlights;
+        if(numFlights==0 || numFlights>10){
+            cout<<"\nInvalid input, returning to main Menu...";
+            cin.ignore();
+            mainMenu();
+            break;
         }
-        void dispBill(){
-            ifstream ifs("register.txt");
+        else{
+            price = numFlights*1499;
+            Km = numFlights*550;
+            if(Km>=5000){
+                price=price*.60;
+            }
+            cout<<"\nThanks for buying with us redirecting you to the main menu..."<<endl<<endl;
+            getPrice();
+            getKm();
+            mainMenu();
+            // cout<<"\nTotal price: "<<price<<endl;
+            // cout<<"Total Km: "<<Km;
+        }
+        break;    
+    case 3:
+        cout<<"\nNueva York - 3350km - $2,499"<<endl<<endl;
+        cout<<"How many seats do you want to buy(if you want to cancel press 0), no more than 10 seats: ";
+        cin>>numFlights;
+        if(numFlights==0 || numFlights>10){
+            cout<<"\nInvalid input, returning to main Menu...";
+            cin.ignore();
+            mainMenu();
+            break;
+        }
+        else{
+            price = numFlights*2499;
+            Km = numFlights*3350;
+            if(Km>=5000){
+                price=price*.60;
+            }
+            cout<<"\nThanks for buying with us redirecting you to the main menu..."<<endl<<endl;
+            getPrice();
+            getKm();
+            mainMenu();
+            // cout<<"\nTotal price: "<<price<<endl;
+            // cout<<"Total Km: "<<Km;
+        }
+        break;
+    case 4:
+        cout<<"\nBoston - 4600km - $2,999"<<endl<<endl;
+        cout<<"How many seats do you want to buy(if you want to cancel press 0), no more than 10 seats: ";
+        cin>>numFlights;
+        if(numFlights==0 || numFlights>10){
+            cout<<"\nInvalid input, returning to main Menu...";
+            cin.ignore();
+            mainMenu();
+            break;
+        }
+        else{
+            price = numFlights*2999;
+            Km = numFlights*4600;
+            if(Km>=5000){
+                price=price*.60;
+            }
+            cout<<"\nThanks for buying with us redirecting you to the main menu..."<<endl<<endl;
+            getPrice();
+            getKm();
+            mainMenu();
+            // cout<<"\nTotal price: "<<price<<endl;
+            // cout<<"Total Km: "<<Km;
+        }
+        break;
+    case 5:
+        cout<<"\nSan Fransisco - 3600km - $2,699"<<endl<<endl;
+        cout<<"How many seats do you want to buy(if you want to cancel press 0), no more than 10 seats: ";
+        cin>>numFlights;
+        if(numFlights==0 || numFlights>10){
+            cout<<"\nInvalid input, returning to main Menu...";
+            cin.ignore();
+            mainMenu();
+            break;
+        }
+        else{
+            price = numFlights*2699;
+            Km = numFlights*3600;
+            if(Km>=5000){
+                price=price*.60;
+            }
+            cout<<"\nThanks for buying with us redirecting you to the main menu..."<<endl<<endl;
+            getPrice();
+            getKm();
+            mainMenu();
+            // cout<<"\nTotal price: "<<price<<endl;
+            // cout<<"Total Km: "<<Km;
+        }
+        break;
+    case 6:
+        cout<<"\nSan Fransisco - 4200km - $3,299"<<endl<<endl;
+        cout<<"How many seats do you want to buy(if you want to cancel press 0), no more than 10 seats: ";
+        cin>>numFlights;
+        if(numFlights==0 || numFlights>10){
+            cout<<"\nInvalid input, returning to main Menu...";
+            cin.ignore();
+            mainMenu();
+            break;
+        }
+        else{
+            price = numFlights*3299;
+            Km = numFlights*4200;
+            if(Km>=5000){
+                price=price*.60;
+            }
+            cout<<"\nThanks for buying with us redirecting you to the main menu..."<<endl<<endl;
+            getPrice();
+            getKm();
+            mainMenu();
+            // cout<<"\nTotal price: "<<price<<endl;
+            // cout<<"Total Km: "<<Km;
+        }
+        break;
+    default:
+        system("cls");
+        cout<<"You've made a mistake , Try again..\n"<<endl;
+        flightMenu();
+        break;
+    }
+}
+
+float flightDetails::getPrice(){return price;}
+int flightDetails::getKm(){return Km;}
+
+void Login::login(){
+    int count;
+    string u,p;
+    system("cls");
+    cout<<"please enter the following details"<<endl;
+    cout<<"USERNAME :";
+    cin>>user;
+    cout<<"PASSWORD :";
+    cin>>pass;
+
+    ifstream input("database.txt");
+    while(input>>u>>p){
+        if(u==user && p==pass){
+            count=1;
+            system("cls");
+        }
+    }
+    input.close();
+    if(count==1){
+        cout<<"\nHello "<<user<<"\n<LOGIN SUCCESSFUL>\nThanks for logging in..\n";
+        mainMenu();
+    }
+    else{
+        cout<<"\nLOGIN ERROR\nPlease check your username and password\n";
+        loginMenu();
+    }
+}
+
+void Login::registr(){
+    string reguser,regpass,ru,rp;
+    system("cls");
+    cout<<"Enter the username :";
+    cin>>reguser;
+    cout<<"\nEnter the password :";
+    cin>>regpass;
+
+    ofstream reg("database.txt",ios::app);
+    reg<<reguser<<' '<<regpass<<endl;
+    system("cls");
+    cout<<"\nflightDetails Sucessful\n";
+    loginMenu();
+}
+
+void Login::loginMenu(){
+    // cin.ignore();
+    int choice;
+    cout<<"\n***********************************************************************\n\n\n";
+    cout<<"                      Welcome to login page                               \n\n";
+    cout<<"*******************        MENU        *******************************\n\n";
+    cout<<"1.LOGIN"<<endl;
+    cout<<"2.REGISTER"<<endl;
+    cout<<"3.Exit"<<endl;
+    cout<<"Please enter your choice: ";
+    cin>>choice;
+    cout<<endl;
+    switch(choice){
+        case 1:
+            login();
+            break;
+        case 2:
+            registr();
+            break;
+        case 3:
+            cout<<"Thank you, stoping program. \n\n";
+            break;
+        default:
+            system("cls");
+            cout<<"You've made a mistake , Try again..\n"<<endl;
+            loginMenu();
+    }
+}
+
+void mainMenu(){
+    // ticket t;
+    int menuChoice;
+    int ticketChoice;
+    cout<<"\n\n\t\t\tMain menu";
+    cout << "\n\n\t\t\t1.Book Flight \n\t\t\t2.Cancel Fight \n\t\t\t3.Check Ticket \n\t\t\t4.Exit" << endl;
+    cout << "\n\t\t Please enter your choice: ";
+    cin>>menuChoice;
+
+    switch (menuChoice){
+        case 1:
+            cout<<"\n\t\t   Booking System"<<endl;
+            fD.flightMenu();
+            break;
+        case 2:
+            cout<<"\n\t   Welcome to the Cancel System"<<endl;
+            cancel();
+            break;
+        case 3:
+            cout<<"\n\t   Welcome to the Ticket System"<<endl;
+            cout<<"1) Generate ticket\n2) View Ticket"<<endl;
+            cin>>ticketChoice;
+            if(ticketChoice==1){
+                fD.Bill();
+            }
+            else if(ticketChoice==2){
+                fD.dispBill();
+            }
+            break;
+        case 4:
+            cout<<"Thank you :D";
+            break;
+        
+        default:
+            cout<<"You've made a mistake , Bye Bye..\n"<<endl;
+            break;
+    }
+}
+
+void flightDetails::Bill(){
+    cout<<"Enter a ticket number: ";
+    cin>>dataFile;
+    ofstream outf("Tickets/"+dataFile+".txt");{
+        outf<<"\n____________Ticket___________\n"<<endl;
+
+        outf<<"User: "<<l.getUser()<<endl;
+
+        if(choice==1){destination="Monterrey";}
+        else if(choice==2){destination="Guadalajara";}
+        else if(choice==3){destination="Nueva York";}
+        else if(choice==4){destination="Boston";}
+        else if(choice==5){destination="San Fransisco";}
+        else if(choice==6){destination="Toronto";}
+                    
+        outf<<"\nDestination: "<<destination<<endl;
+        outf<<"Total km: "<<Km<<endl;
+        outf<<"Final cost: "<<price<<endl;
+        outf<<"\nTicket number: "<<dataFile;
+    }
+    outf.close();
+    cout<<"File Created. Your ticket is: "<<dataFile;
+    mainMenu();
+}
+
+void flightDetails::dispBill(){
+    cout<<"Enter your ticket number to find your ticket: ";
+    cin>>dataFile;
+    ifstream ifs("Tickets/"+dataFile+".txt");
             {
                 if(!ifs){
                     cout<<"Error"<<endl;
@@ -355,84 +325,25 @@ class ticket : public registration, Details{
                 }
             }
             ifs.close();
-        }
-};
-
-
-float registration::charges;
-int registration::choice;
-
-void mainMenu(){
-    int lchoice;
-    int schoice;
-    int back;
-
-    cout<<"\t                 Flights Booking System \n"<<endl;
-    cout<<"\t________________________Main Menu_______________________ \n"<<endl;
-
-    cout<<"\t________________________________________________________"<<endl;
-    cout<<"\t|\t\t\t\t\t\t\t|"<<endl;
-
-    cout<<"\t|\t Press 1 to add the Customer Details    \t|"<<endl;
-    cout<<"\t|\t Press 2 for Flight Registration        \t|"<<endl;
-    cout<<"\t|\t Press 3 for Ticket and Charges         \t|"<<endl;
-    cout<<"\t|\t Press 4 to Exit                        \t|"<<endl;
-    cout<<"\t|\t\t\t\t\t\t\t|"<<endl;
-    cout<<"\t________________________________________________________"<<endl;
-
-    cout<<"\tPlease Select an option: ";
-    cin>>lchoice;
-
-    Details d;
-    registration r;
-    ticket t;
-
-    switch (lchoice){
-        case 1:{
-            cout<<"___________Customers__________\n"<<endl;
-            d.information();
-            cout<<"Press 0 to go back to the main menu ";
-            cin>>back;
-
-            if(back==0){mainMenu();}
-            else{mainMenu();}
-            break;
-        }
-        case 2:{
-            cout<<"___________Book a flight__________\n"<<endl;
-            r.flights();
-            break;
-        }
-        case 3:{
-            cout<<"___________Get your Ticket__________\n"<<endl;
-            t.Bill();
-
-            cout<<"Press 1 if you want your ticket ";
-            cin>>back;
-
-            if(back==1){
-                t.dispBill();
-                cout<<"Press 0 to go back to the main menu ";
-                cin>>back;
-                if(back==0){mainMenu();}
-                else{mainMenu();}
-            }
-            else{mainMenu();}          
-            break;
-        }
-        case 4:{
-            cout<<"\n\n\t________Thank you________\n"<<endl;
-            break;
-        }
-        default:{
-            cout<<"Invalid input\n"<<endl;
-            mainMenu();
-            break;
-        }
-    }
 }
 
-int main() {
-    System Obj;
-    return 0;
+void cancel(){
+    string cancel;
+    string file;
+    cout<<"Enter the ticket number you want to cancel: ";
+    cin>>cancel;
+    file = ("Tickets/"+cancel+".txt");
+    remove(file.c_str());
+}
+
+int main(){
+    system("cls");
+    system("color 0E");
+    cout << "\n\n \t\tWelcome To Flight Reservation System" << endl;
+    cout <<"\n\t   **********************************************\n";
+    cout << "\t   Book your Flight tickets at affordable prices!" << endl;
+    cout <<"\n\t";
+    
+    l.loginMenu();
+
 }
